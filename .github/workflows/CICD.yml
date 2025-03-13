@@ -33,15 +33,16 @@
      # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
      - name: Setup Gradle
        uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+       
+     - name: Set YML
+       run: |
+         mkdir -p src/main/resources
+         echo "${{ secrets.APPLICATION_YML}}" > src/main/resources/application.yml
  
      - name: Build with Gradle Wrapper(Detail Log)
        run: |
          chmod +x gradlew
          ./gradlew clean build --info
-     - name: Set YML
-       run: |
-         mkdir -p src/main/resources
-         echo "${{ secrets.APPLICATION_YML}}" > src/main/resources/application.yml
 
    cd:
        needs: ci
