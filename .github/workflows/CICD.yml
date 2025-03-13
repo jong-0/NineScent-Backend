@@ -47,23 +47,23 @@
          ./gradlew clean build --info
 
      - name: Check jar file
-       run: ls ./target
+       run: ls ./build/libs
 
      - name: Naming jar file
-       run: mv ./target/*.jar ./target/app.jar
+       run: mv ./build/libs*.jar ./build/libs/app.jar
 
      - uses: actions/upload-artifact@v4
        with:
          name: app
-         path: ./target/*.jar
+         path: ./build/libs/*.jar
 
-   # cd:
-   #     needs: ci
-   #     runs-on: ubuntu-latest
-   #     steps:
-   #     - name: Execute deployment script
-   #       uses: appleboy/ssh-action@v1.2.0
-   #       with:
-   #         host: ${{ secrets.EC2_HOST }}
-   #         username: ec2-user
-   #         key: ${{ secrets.EC2_SSH_KEY }}
+   cd:
+       needs: ci
+       runs-on: ubuntu-latest
+       steps:
+       - name: Execute deployment script
+         uses: appleboy/ssh-action@v1.2.0
+         with:
+           host: ${{ secrets.EC2_HOST }}
+           username: ec2-user
+           key: ${{ secrets.EC2_SSH_KEY }}
