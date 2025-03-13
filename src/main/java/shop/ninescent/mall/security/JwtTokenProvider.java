@@ -86,4 +86,8 @@ public class JwtTokenProvider {
                 .getBody();
         return claims.get("role", String.class);
     }
+
+    public String getJwtSecret() {
+        return secretKey;
+    }
 }
