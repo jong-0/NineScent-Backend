@@ -50,7 +50,7 @@
        run: ls ./build/libs
 
      - name: Naming jar file
-       run: mv ./build/libs*.jar ./build/libs/app.jar
+       run: mv ./build/libs/*.jar ./build/libs/app.jar
 
      - uses: actions/upload-artifact@v4
        with:
