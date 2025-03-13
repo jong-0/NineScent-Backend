@@ -69,7 +69,7 @@
 
        - name: deploy to EC2
          run: |
-           echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+           echo "${{ secrets.EC2_SSH_KEY }}" > Seoul.pem
            chmod 600 private_key.pem
    
            scp -i private_key.pem app.jar ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/app.jar
