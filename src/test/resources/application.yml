@@ -1,5 +1,6 @@
 jwt:
   secret: "test_jwt_secret_for_testing"
+  expiration: 7200000 # 2시간 (밀리초 단위)
 
 spring:
   datasource:
