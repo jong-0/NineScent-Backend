@@ -46,11 +46,11 @@
          chmod +x gradlew
          ./gradlew clean build --info
 
-     - name: Naming jar file
-       run: mv ./target/*.jar ./target/app.jar
-
      - name: Check jar file
        run: ls ./target
+
+     - name: Naming jar file
+       run: mv ./target/*.jar ./target/app.jar
 
      - uses: actions/upload-artifact@v4
        with:
