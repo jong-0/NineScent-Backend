@@ -36,21 +36,34 @@
        
      - name: Set YML
        run: |
-         mkdir -p src/main/resources
-         echo "${{ secrets.APPLICATION_YML}}" > src/main/resources/application.yml
+         cd ./src/main/resources
+         touch ./application.yml
+         echo "${{ secrets.APPLICATION_YML }}" > ./application.yml
+       shell: bash
  
      - name: Build with Gradle Wrapper(Detail Log)
        run: |
          chmod +x gradlew
          ./gradlew clean build --info
 
-   cd:
-       needs: ci
-       runs-on: ubuntu-latest
-       steps:
-       - name: Execute deployment script
-         uses: appleboy/ssh-action@v1.2.0
-         with:
-           host: ${{ secrets.EC2_HOST }}
-           username: ec2-user
-           key: ${{ secrets.EC2_SSH_KEY }}
+     - name: Naming jar file
+       run: mv ./target/*.jar ./target/app.jar
+
+     - name: Check jar file
+       run: ls ./target
+
+     - uses: actions/upload-artifact@v4
+       with:
+         name: app
+         path: ./target/*.jar
+
+   # cd:
+   #     needs: ci
+   #     runs-on: ubuntu-latest
+   #     steps:
+   #     - name: Execute deployment script
+   #       uses: appleboy/ssh-action@v1.2.0
+   #       with:
+   #         host: ${{ secrets.EC2_HOST }}
+   #         username: ec2-user
+   #         key: ${{ secrets.EC2_SSH_KEY }}
