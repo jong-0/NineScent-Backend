@@ -37,7 +37,7 @@
  
      - name: Build with Gradle Wrapper(Detail Log)
        run:
-         chmod +x gradle
+         chmod +x gradlew
          ./gradlew clean build --info
  
      # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
