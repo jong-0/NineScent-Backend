@@ -40,14 +40,11 @@
          touch ./application.yml
          echo "${{ secrets.APPLICATION_YML }}" > ./application.yml
        shell: bash
-
-     - name: Debug Environment Variables
-       run: echo "JWT_SECRET=${{ secrets.JWT_SECRET }}"
  
      - name: Build with Gradle Wrapper(Detail Log)
        run: |
          chmod +x gradlew
-         ./gradlew clean build --info
+         ./gradlew clean build --x test
 
      - name: Check jar file
        run: ls ./build/libs
