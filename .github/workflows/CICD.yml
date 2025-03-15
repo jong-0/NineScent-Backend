@@ -36,9 +36,7 @@
        
      - name: Set YML
        run: |
-         cd ./src/main/resources
-         touch ./application.yml
-         echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./application.yml
+         echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./src/main/resources/application.yml
        shell: bash
  
      - name: Build with Gradle Wrapper(Detail Log)
