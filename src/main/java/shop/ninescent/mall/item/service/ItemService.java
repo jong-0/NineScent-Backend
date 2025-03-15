@@ -1,6 +1,8 @@
 package shop.ninescent.mall.item.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -119,6 +121,7 @@ public class ItemService {
 //    public void initRecommendItems() {
 //        updateRecommendItems();
 //    }
+
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReady() {
         updateRecommendItems();
