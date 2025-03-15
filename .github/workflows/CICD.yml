@@ -38,7 +38,7 @@
        run: |
          cd ./src/main/resources
          touch ./application.yml
-         echo "${{ secrets.APPLICATION_YML }}" > ./application.yml
+         echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > ./application.yml
        shell: bash
  
      - name: Build with Gradle Wrapper(Detail Log)
